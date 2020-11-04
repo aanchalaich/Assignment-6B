@@ -1,6 +1,10 @@
 // 1. Get the Product
 
-orders = [];
+//var orders = [];
+orders=JSON.parse(sessionStorage.getItem('all orders')) || [];
+sessionStorage.setItem('all orders',JSON.stringify(orders));
+
+//final_order_list=sessionStorage.setItem("all orders", JSON.stringify(orders));
 
 product_ids = ["Couch Pillow Page", "Floor Pouf Pillow Page", "Bed Pillow Page", "Round Pillow Page"];
 products = ["Couch Pillow", "Floor Pouf Pillow", "Bed Pillow", "Round Pillow"];
@@ -83,9 +87,10 @@ function changeQuantity(value) {
 
 // 5. Submit Button
 
-previousQuantity = JSON.parse(localStorage.getItem("finalQuantity")) || 0;
+previousQuantity = JSON.parse(sessionStorage.getItem("finalQuantity")) || 0;
 
 function submitOrder() {
+    var orders = [];
     currentProduct = getProduct();
     let currentOrder = {
         finalProduct: currentProduct,
@@ -94,14 +99,18 @@ function submitOrder() {
         finalQuantity: currentQuantity,
     }
 
+    orders=JSON.parse(sessionStorage.getItem('all orders')) || [];
+    
     orders.push(currentOrder);
-    localStorage.setItem("orders", JSON.stringify(orders));
+    alert(orders);
+    sessionStorage.setItem('all orders', JSON.stringify(orders));
 
+    
     if (previousQuantity === null) {
         previousQuantity = 0;
     }
     previousQuantity += 1;
-    localStorage.setItem("finalQuantity", previousQuantity);
+    sessionStorage.setItem("finalQuantity", previousQuantity);
     window.location.href = 'shoppingCart.html';
 
 }
