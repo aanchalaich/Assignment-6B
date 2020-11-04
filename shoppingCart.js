@@ -113,13 +113,30 @@ function submitOrder() {
     sessionStorage.setItem("finalQuantity", previousQuantity);
     window.location.href = 'shoppingCart.html';
 
+    
+
 }
 
-window.onload = function () {
+window.onload = function() {
+
     if (document.title == 'Shopping Cart Page') {
+        for (let i = 0; i < JSON.parse(sessionStorage.getItem('all orders')).length; i++) {
+            newSection=document.createElement("div");
+            newSection.className="Shopping_Cart_Section";
+            document.body.appendChild(newSection);
+            document.getElementsByClassName("Shopping_Cart_Image_Div").src="images/couch_pillow.png";
+    }
+}
+
+
+    
+    if (document.title == 'Shopping Cart Page') { 
         document.getElementById('itemCount').innerHTML = JSON.stringify(previousQuantity);
     }
 }
+
+
+
 
 
 
