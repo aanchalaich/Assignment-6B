@@ -225,10 +225,22 @@ window.onload = function() {
             materialImageDiv.appendChild(materialImage);
 
             //create Remove Option
+            removeButton=document.createElement("button");
+            removeButton.className="Remove_Button";
+            removeButton.addEventListener('click',removeItem());
+            newSection.appendChild(removeButton);
             removeOption=document.createElement("img");
             removeOption.className="Remove_Option";
             removeOption.src="images/remove_option.png";
-            newSection.appendChild(removeOption);
+            removeButton.appendChild(removeOption);
+
+            //add item number
+            itemNumber=document.createElement("p");
+            itemNumber.className="item_number";
+            itemNumber.innerHTML=i+1;
+            newSection.appendChild(itemNumber);
+
+
 
     }
 }
@@ -238,6 +250,19 @@ window.onload = function() {
     if (document.title == 'Shopping Cart Page') { 
         document.getElementById('itemCount').innerHTML = JSON.stringify(previousQuantity);
     }
+}
+
+
+
+function removeItem() {
+    alert('hi');
+    index_to_remove=document.getElementById(itemNumber);
+    orders=JSON.parse(sessionStorage.getItem('all orders')) || [];
+    orders.splice(index_to_remove-1,1);
+    sessionStorage.setItem('all orders', JSON.stringify(orders));
+    
+    location.reload();
+    return false;
 }
 
 

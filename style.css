@@ -706,9 +706,9 @@ p{
 .Remove_Option{
     position: relative;
     bottom:205%;
-    left:42%;
-    width:10%; 
-    height:10%;
+    left:-10%;
+    width:120%; 
+    height:120%;
 }
 
 #itemCount{
@@ -783,6 +783,13 @@ p{
     z-index: 1000;
 }
 
+.item_number{
+    position: relative;
+    bottom: 250%;
+    right: 45%;
+    z-index: 2000;
+}
+
 
 
 
@@ -804,3 +811,10 @@ p{
         top: -15%;
         right: -20%;
   }
+
+ .Remove_Button{
+    position: relative;
+    bottom: 205%;
+    left: 42%;
+    z-index: 1000;
+ } 
