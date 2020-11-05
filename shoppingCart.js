@@ -113,24 +113,36 @@ function submitOrder() {
     sessionStorage.setItem("finalQuantity", previousQuantity);
     window.location.href = 'shoppingCart.html';
 
-    
 
 }
-
+color_images=["images/after_school_special.png","images/cozy_denim.png","images/rainy_day.png","images/morning_haze.png"];
+material_images=["images/hypo_poly_blend.png","images/memory_foam.png","images/duck_down.png"];
+product_images=["images/couch_pillow.png","images/floor_pouf_pillows.png","images/bed_pillows.png","images/round_pillows.png"];
 window.onload = function() {
 
     if (document.title == 'Shopping Cart Page') {
-        for (let i = 0; i < JSON.parse(sessionStorage.getItem('all orders')).length; i++) {
+        for (let i = 0; i < orders.length; i++) {
+
+            let finalColorImage='';
+            let finalMaterialImage='';
+            let finalProductImage='';
 
             //create section
             newSection=document.createElement("div");
             newSection.className="Shopping_Cart_Section";
             document.body.appendChild(newSection);
 
-            //create image
+            //update image
             newSectionImage=document.createElement("img");
             newSectionImage.className="Shopping_Cart_Image_Div";
-            newSectionImage.src="images/couch_pillow.png";
+
+            for (let j = 0; j < products.length; j++) {
+                if (orders[i].finalProduct==products[j]){
+                    finalProductImage=product_images[j];
+                }
+            }
+
+            newSectionImage.src=finalProductImage;
             newSection.appendChild(newSectionImage);
 
             //create Title
@@ -139,7 +151,7 @@ window.onload = function() {
             newSection.appendChild(shoppingCartText);
             shoppingCartTextLink=document.createElement("a");
             shoppingCartTextLink.href="couchPillow.html";
-            shoppingCartTextLink.innerHTML="Couch Pillows";
+            shoppingCartTextLink.innerHTML=orders[i].finalProduct;
             shoppingCartText.appendChild(shoppingCartTextLink);
 
             //create Quantity Option
@@ -152,7 +164,7 @@ window.onload = function() {
             newSection.appendChild(shoppingCartNumber);
             shoppingCartInput=document.createElement("input");
             shoppingCartInput.type="number";
-            shoppingCartInput.value="0";
+            shoppingCartInput.value=orders[i].finalQuantity;
             shoppingCartNumber.appendChild(shoppingCartInput);
 
             //create Color Option
@@ -162,14 +174,22 @@ window.onload = function() {
             newSection.appendChild(colorTitle);
             colorSelected=document.createElement("p");
             colorSelected.className="Color_Selected";
-            colorSelected.innerHTML="After-School Special";
+            colorSelected.innerHTML=orders[i].finalColor;
             newSection.appendChild(colorSelected);
             colorImageDiv=document.createElement("div");
             colorImageDiv.className="Final_Order_Color";
             newSection.appendChild(colorImageDiv);
+
+            //change Color Image
+            for (let j = 0; j < materials.length; j++) {
+                if (orders[i].finalColor==colors[j]){
+                    finalColorImage=color_images[j];
+                }
+            }
+
             colorImage=document.createElement("img");
             colorImage.className="Final_Order_Color_Image";
-            colorImage.src="images/after_school_special.png";
+            colorImage.src=finalColorImage;
             colorImageDiv.appendChild(colorImage);
 
             //create Edit Option
@@ -185,14 +205,23 @@ window.onload = function() {
             newSection.appendChild(materialTitle);
             materialSelected=document.createElement("p");
             materialSelected.className="Material_Selected";
-            materialSelected.innerHTML="Hypoallergenic Poly Blend";
+            materialSelected.innerHTML=orders[i].finalMaterial;
             newSection.appendChild(materialSelected);
             materialImageDiv=document.createElement("div");
             materialImageDiv.className="Final_Order_Material";
             newSection.appendChild(materialImageDiv);
+
+            //change Material Image
+
+            for (let j = 0; j < colors.length; j++) {
+                if (orders[i].finalMaterial==materials[j]){
+                    finalMaterialImage=material_images[j];
+                }
+            }
+
             materialImage=document.createElement("img");
             materialImage.className="Final_Order_Material_Image";
-            materialImage.src="images/hypo_poly_blend.png";
+            materialImage.src=finalMaterialImage;
             materialImageDiv.appendChild(materialImage);
 
             //create Remove Option
