@@ -121,10 +121,40 @@ window.onload = function() {
 
     if (document.title == 'Shopping Cart Page') {
         for (let i = 0; i < JSON.parse(sessionStorage.getItem('all orders')).length; i++) {
+
+            //create section
             newSection=document.createElement("div");
             newSection.className="Shopping_Cart_Section";
             document.body.appendChild(newSection);
-            document.getElementsByClassName("Shopping_Cart_Image_Div").src="images/couch_pillow.png";
+
+            //create image
+            newSectionImage=document.createElement("img");
+            newSectionImage.className="Shopping_Cart_Image_Div";
+            newSectionImage.src="images/couch_pillow.png";
+            newSection.appendChild(newSectionImage);
+
+            //create Title
+            shoppingCartText=document.createElement("p");
+            shoppingCartText.className="Shopping_Cart_Text";
+            newSection.appendChild(shoppingCartText);
+            shoppingCartTextLink=document.createElement("a");
+            shoppingCartTextLink.href="couchPillow.html";
+            shoppingCartTextLink.innerHTML="Couch Pillows";
+            shoppingCartText.appendChild(shoppingCartTextLink);
+
+            //create Quantity Option
+            quantityTitle=document.createElement("div");
+            quantityTitle.className="Quantity_Option_Shopping_Cart";
+            quantityTitle.innerHTML="Quantity";
+            newSection.appendChild(quantityTitle);
+            shoppingCartNumber=document.createElement("div");
+            shoppingCartNumber.className="shopping_cart_number";
+            newSection.appendChild(shoppingCartNumber);
+            shoppingCartInput=document.createElement("input");
+            shoppingCartInput.type="number";
+            shoppingCartInput.value="0";
+            shoppingCartNumber.appendChild(shoppingCartInput);
+
     }
 }
 
