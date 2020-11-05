@@ -155,6 +155,52 @@ window.onload = function() {
             shoppingCartInput.value="0";
             shoppingCartNumber.appendChild(shoppingCartInput);
 
+            //create Color Option
+            colorTitle=document.createElement("div");
+            colorTitle.className="Color_Option";
+            colorTitle.innerHTML="Color";
+            newSection.appendChild(colorTitle);
+            colorSelected=document.createElement("p");
+            colorSelected.className="Color_Selected";
+            colorSelected.innerHTML="After-School Special";
+            newSection.appendChild(colorSelected);
+            colorImageDiv=document.createElement("div");
+            colorImageDiv.className="Final_Order_Color";
+            newSection.appendChild(colorImageDiv);
+            colorImage=document.createElement("img");
+            colorImage.className="Final_Order_Color_Image";
+            colorImage.src="images/after_school_special.png";
+            colorImageDiv.appendChild(colorImage);
+
+            //create Edit Option
+            editOption=document.createElement("img");
+            editOption.className="Edit_Option";
+            editOption.src="images/edit_option.png";
+            newSection.appendChild(editOption);
+
+            //create Material Option
+            materialTitle=document.createElement("div");
+            materialTitle.className="Material_Option";
+            materialTitle.innerHTML="Material";
+            newSection.appendChild(materialTitle);
+            materialSelected=document.createElement("p");
+            materialSelected.className="Material_Selected";
+            materialSelected.innerHTML="Hypoallergenic Poly Blend";
+            newSection.appendChild(materialSelected);
+            materialImageDiv=document.createElement("div");
+            materialImageDiv.className="Final_Order_Material";
+            newSection.appendChild(materialImageDiv);
+            materialImage=document.createElement("img");
+            materialImage.className="Final_Order_Material_Image";
+            materialImage.src="images/hypo_poly_blend.png";
+            materialImageDiv.appendChild(materialImage);
+
+            //create Remove Option
+            removeOption=document.createElement("img");
+            removeOption.className="Remove_Option";
+            removeOption.src="images/remove_option.png";
+            newSection.appendChild(removeOption);
+
     }
 }
 
