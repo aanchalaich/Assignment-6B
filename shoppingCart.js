@@ -223,11 +223,12 @@ window.onload = function() {
             materialImage.className="Final_Order_Material_Image";
             materialImage.src=finalMaterialImage;
             materialImageDiv.appendChild(materialImage);
+            
 
             //create Remove Option
             removeButton=document.createElement("button");
             removeButton.className="Remove_Button";
-            removeButton.addEventListener('click',removeItem());
+         
             newSection.appendChild(removeButton);
             removeOption=document.createElement("img");
             removeOption.className="Remove_Option";
@@ -238,7 +239,11 @@ window.onload = function() {
             itemNumber=document.createElement("p");
             itemNumber.className="item_number";
             itemNumber.innerHTML=i+1;
+            //alert(itemNumber.innerHTML)
             newSection.appendChild(itemNumber);
+            index_to_remove=itemNumber.innerHTML-1;
+            //alert(index_to_remove);
+            removeButton.onclick=removeItem;
 
 
 
@@ -254,13 +259,12 @@ window.onload = function() {
 
 
 
-function removeItem() {
-    alert('hi');
-    index_to_remove=document.getElementById(itemNumber);
+function removeItem(index_to_remove) {
+    //alert(index_to_remove);
     orders=JSON.parse(sessionStorage.getItem('all orders')) || [];
-    orders.splice(index_to_remove-1,1);
+    orders.splice(index_to_remove,1);
     sessionStorage.setItem('all orders', JSON.stringify(orders));
-    
+    alert('has been removed');
     location.reload();
     return false;
 }
