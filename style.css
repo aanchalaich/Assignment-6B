@@ -824,4 +824,5 @@ p{
     bottom: 80%;
     left: 90%;
     z-index: 1000;
+    border: hidden;
  } 

@@ -102,7 +102,6 @@ function submitOrder() {
     orders=JSON.parse(sessionStorage.getItem('all orders')) || [];
     
     orders.push(currentOrder);
-    alert(orders);
     sessionStorage.setItem('all orders', JSON.stringify(orders));
 
     
@@ -264,7 +263,8 @@ function removeItem(index_to_remove) {
     orders=JSON.parse(sessionStorage.getItem('all orders')) || [];
     orders.splice(index_to_remove,1);
     sessionStorage.setItem('all orders', JSON.stringify(orders));
-    alert('has been removed');
+    previousQuantity-=1;
+    sessionStorage.setItem("finalQuantity", previousQuantity);
     location.reload();
     return false;
 }
