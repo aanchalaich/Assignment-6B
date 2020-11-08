@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<!--styles-->
-		<link rel="stylesheet" type="text/css" href="style.css">
+<head>
+	<!--styles-->
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>Home Page</title>
-		<meta charset="UTF-8">
-	</head>
+	<meta charset="UTF-8">
+</head>
 
-		<body class="wrapper">
+<body class="wrapper">
 
 
-			<!--Header (Logo, search bar, login, shopping cart, nav bar)-->
+	<body class="wrapper">
+
+		<!--Header (Logo, search bar, login, shopping cart, nav bar)-->
 		<header>
 			<div class="flex_container">
-				<h1 >
-					<a href="HomePage.html"><img src="images/Logo.png" alt="Login Icon" width="350" height="90" style="z-index: 1000"></a>
+				<h1>
+					<a href="HomePage.html"><img id="logo" src="images/Logo.png" alt="Login Icon"></a>
 				</h1>
-				<div id="pillow_icon">
-					<img src="images/pillowIcon.png" alt="Login Icon" width="150" height="120" >
+				<div>
+					<img id="pillow_icon" src="images/pillowIcon.png" alt="Login Icon">
 				</div>
 				<div id="search_bar">
-					<img src="images/search_bar.png" alt="Login Icon" width="800" height="120" >
+					<input type="text" placeholder="Search..">
+					<button type="submit">Search</button>
 				</div>
 				<div style="position: relative; left:10%">
 					<img id="login_icon" src="images/loginInformation.png" alt="Login Icon">
@@ -31,7 +34,7 @@
 							alt="Login Icon"></a>
 				</div>
 				<div id="wishlist_icon">
-					<a href="wishlist.html"><img id="shopping_cart_icon_nav" src="images/wishlist_header.png"
+					<a href="wishlist.html"><img src="images/wishlist_header.png"
 							alt="Login Icon"></a>
 				</div>
 			</div>
@@ -41,14 +44,15 @@
 				<a href="comingSoon.html">Our History</a>
 				<a href="comingSoon.html">Careers</a>
 				<a href="comingSoon.html">Contact</a>
-			</nav>				
+			</nav>
 		</header>
-        
-        <div id="welcome">
-            <p id="welcome_text">
-                Coming Soon :)
-            </p>
-        </div>
-		 
-		</body>
+
+	<div id="welcome">
+		<p id="welcome_text">
+			Coming Soon :)
+		</p>
+	</div>
+
+</body>
+
 </html>

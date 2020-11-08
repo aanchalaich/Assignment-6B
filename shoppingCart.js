@@ -1,12 +1,13 @@
-// 1. Get the Product
 
-orders=JSON.parse(sessionStorage.getItem('all orders')) || [];
-sessionStorage.setItem('all orders',JSON.stringify(orders));
+//store orders in local storage
+orders = JSON.parse(sessionStorage.getItem('all orders')) || [];
+sessionStorage.setItem('all orders', JSON.stringify(orders));
 
-wishlist=JSON.parse(sessionStorage.getItem('all wishlist')) || [];
-sessionStorage.setItem('all wishlist',JSON.stringify(wishlist));
-//final_order_list=sessionStorage.setItem("all orders", JSON.stringify(orders));
+//store wishlist in local storage
+wishlist = JSON.parse(sessionStorage.getItem('all wishlist')) || [];
+sessionStorage.setItem('all wishlist', JSON.stringify(wishlist));
 
+//lists and function to obtain and store product titles in local storage
 product_ids = ["Couch Pillow Page", "Floor Pouf Pillow Page", "Bed Pillow Page", "Round Pillow Page"];
 products = ["Couch Pillow", "Floor Pouf Pillow", "Bed Pillow", "Round Pillow"];
 currentProduct = "";
@@ -20,8 +21,7 @@ function getProduct() {
     return currentProduct;
 }
 
-// 2. Change the Color
-
+//lists and function to obtain and store product colors in local storage
 color_ids = ['Customization_Option_One', 'Customization_Option_Two', 'Customization_Option_Three', 'Customization_Option_Four'];
 colors = ["After-School Special", "Cozy Denim", "Rainy Day", "Morning Haze"];
 currentColorSelection = 'Customization_Option_One';
@@ -50,8 +50,7 @@ function changeColor(id) {
 
 }
 
-// 3. Change the Material
-
+//lists and function to obtain and store product materials in local storage
 material_ids = ['Customization_Option_Five', 'Customization_Option_Six', 'Customization_Option_Seven'];
 materials = ["Hypoallergenic Poly Blend", "Memory Foam", "Duck Down"];
 currentMaterialSelection = 'Customization_Option_Five';
@@ -79,15 +78,14 @@ function changeMaterial(id) {
 
 }
 
-// 4. Change the Quantity
+//lists and function to obtain and store product quantities in local storage
 currentQuantity = 1;
 
 function changeQuantity(value) {
     currentQuantity = value;
 }
 
-// 5. Submit Button
-
+//Submit Button
 previousQuantity = JSON.parse(sessionStorage.getItem("finalQuantity")) || 0;
 
 function submitOrder() {
@@ -100,12 +98,12 @@ function submitOrder() {
         finalQuantity: currentQuantity,
     }
 
-    orders=JSON.parse(sessionStorage.getItem('all orders')) || [];
-    
+    orders = JSON.parse(sessionStorage.getItem('all orders')) || [];
+
     orders.push(currentOrder);
     sessionStorage.setItem('all orders', JSON.stringify(orders));
 
-    
+
     if (previousQuantity === null) {
         previousQuantity = 0;
     }
@@ -116,6 +114,7 @@ function submitOrder() {
 
 }
 
+//Add to Wishlist Button
 wishlistQuantity = JSON.parse(sessionStorage.getItem("wishlistQuantity")) || 0;
 
 function addToWishlist() {
@@ -128,12 +127,12 @@ function addToWishlist() {
         wishlistQuantity: currentQuantity,
     }
 
-    wishlist=JSON.parse(sessionStorage.getItem('all wishlist')) || [];
-    
+    wishlist = JSON.parse(sessionStorage.getItem('all wishlist')) || [];
+
     wishlist.push(currentWishlist);
     sessionStorage.setItem('all wishlist', JSON.stringify(wishlist));
 
-    
+
     if (wishlistQuantity === null) {
         wishlistQuantity = 0;
     }
@@ -145,304 +144,309 @@ function addToWishlist() {
 }
 
 
-color_images=["images/after_school_special.png","images/cozy_denim.png","images/rainy_day.png","images/morning_haze.png"];
-material_images=["images/hypo_poly_blend.png","images/memory_foam.png","images/duck_down.png"];
-product_images=["images/couch_pillow.png","images/floor_pouf_pillows.png","images/bed_pillows.png","images/round_pillows.png"];
+//Lists to store and retrieve images
+color_images = ["images/after_school_special.png", "images/cozy_denim.png", "images/rainy_day.png", "images/morning_haze.png"];
+material_images = ["images/hypo_poly_blend.png", "images/memory_foam.png", "images/duck_down.png"];
+product_images = ["images/couch_pillow.png", "images/floor_pouf_pillows.png", "images/bed_pillows.png", "images/round_pillows.png"];
 
-window.onload = function() {
 
+//Onload function
+window.onload = function () {
+
+    //Create shopping cart page
     if (document.title == 'Shopping Cart Page') {
         for (let i = 0; i < orders.length; i++) {
 
-            let finalColorImage='';
-            let finalMaterialImage='';
-            let finalProductImage='';
+            let finalColorImage = '';
+            let finalMaterialImage = '';
+            let finalProductImage = '';
 
             //create section
-            newSection=document.createElement("div");
-            newSection.className="Shopping_Cart_Section";
+            newSection = document.createElement("div");
+            newSection.className = "Shopping_Cart_Section";
             document.body.appendChild(newSection);
 
             //update image
-            newSectionImage=document.createElement("img");
-            newSectionImage.className="Shopping_Cart_Image_Div";
+            newSectionImage = document.createElement("img");
+            newSectionImage.className = "Shopping_Cart_Image_Div";
 
             for (let j = 0; j < products.length; j++) {
-                if (orders[i].finalProduct==products[j]){
-                    finalProductImage=product_images[j];
+                if (orders[i].finalProduct == products[j]) {
+                    finalProductImage = product_images[j];
                 }
             }
 
-            newSectionImage.src=finalProductImage;
+            newSectionImage.src = finalProductImage;
             newSection.appendChild(newSectionImage);
 
             //create Title
-            shoppingCartText=document.createElement("p");
-            shoppingCartText.className="Shopping_Cart_Text";
+            shoppingCartText = document.createElement("p");
+            shoppingCartText.className = "Shopping_Cart_Text";
             newSection.appendChild(shoppingCartText);
-            shoppingCartTextLink=document.createElement("a");
+            shoppingCartTextLink = document.createElement("a");
             //shoppingCartTextLink.href="couchPillow.html";
-            shoppingCartTextLink.innerHTML=orders[i].finalProduct;
+            shoppingCartTextLink.innerHTML = orders[i].finalProduct;
             shoppingCartText.appendChild(shoppingCartTextLink);
 
             //create Quantity Option
-            quantityTitle=document.createElement("div");
-            quantityTitle.className="Quantity_Option_Shopping_Cart";
-            quantityTitle.innerHTML="Quantity";
+            quantityTitle = document.createElement("div");
+            quantityTitle.className = "Quantity_Option_Shopping_Cart";
+            quantityTitle.innerHTML = "Quantity";
             newSection.appendChild(quantityTitle);
-            shoppingCartNumber=document.createElement("div");
-            shoppingCartNumber.className="shopping_cart_number";
+            shoppingCartNumber = document.createElement("div");
+            shoppingCartNumber.className = "shopping_cart_number";
             newSection.appendChild(shoppingCartNumber);
-            shoppingCartInput=document.createElement("input");
-            shoppingCartInput.type="number";
-            shoppingCartInput.value=orders[i].finalQuantity;
+            shoppingCartInput = document.createElement("input");
+            shoppingCartInput.type = "number";
+            shoppingCartInput.value = orders[i].finalQuantity;
             shoppingCartNumber.appendChild(shoppingCartInput);
 
             //create Color Option
-            colorTitle=document.createElement("div");
-            colorTitle.className="Color_Option";
-            colorTitle.innerHTML="Color";
+            colorTitle = document.createElement("div");
+            colorTitle.className = "Color_Option";
+            colorTitle.innerHTML = "Color";
             newSection.appendChild(colorTitle);
-            colorSelected=document.createElement("p");
-            colorSelected.className="Color_Selected";
-            colorSelected.innerHTML=orders[i].finalColor;
+            colorSelected = document.createElement("p");
+            colorSelected.className = "Color_Selected";
+            colorSelected.innerHTML = orders[i].finalColor;
             newSection.appendChild(colorSelected);
-            colorImageDiv=document.createElement("div");
-            colorImageDiv.className="Final_Order_Color";
+            colorImageDiv = document.createElement("div");
+            colorImageDiv.className = "Final_Order_Color";
             newSection.appendChild(colorImageDiv);
 
             //change Color Image
             for (let j = 0; j < materials.length; j++) {
-                if (orders[i].finalColor==colors[j]){
-                    finalColorImage=color_images[j];
+                if (orders[i].finalColor == colors[j]) {
+                    finalColorImage = color_images[j];
                 }
             }
 
-            colorImage=document.createElement("img");
-            colorImage.className="Final_Order_Color_Image";
-            colorImage.src=finalColorImage;
+            colorImage = document.createElement("img");
+            colorImage.className = "Final_Order_Color_Image";
+            colorImage.src = finalColorImage;
             colorImageDiv.appendChild(colorImage);
 
             //create Edit Option
-            editOption=document.createElement("img");
-            editOption.className="Edit_Option";
-            editOption.src="images/edit_option.png";
+            editOption = document.createElement("img");
+            editOption.className = "Edit_Option";
+            editOption.src = "images/edit_option.png";
             newSection.appendChild(editOption);
 
             //create Material Option
-            materialTitle=document.createElement("div");
-            materialTitle.className="Material_Option";
-            materialTitle.innerHTML="Material";
+            materialTitle = document.createElement("div");
+            materialTitle.className = "Material_Option";
+            materialTitle.innerHTML = "Material";
             newSection.appendChild(materialTitle);
-            materialSelected=document.createElement("p");
-            materialSelected.className="Material_Selected";
-            materialSelected.innerHTML=orders[i].finalMaterial;
+            materialSelected = document.createElement("p");
+            materialSelected.className = "Material_Selected";
+            materialSelected.innerHTML = orders[i].finalMaterial;
             newSection.appendChild(materialSelected);
-            materialImageDiv=document.createElement("div");
-            materialImageDiv.className="Final_Order_Material";
+            materialImageDiv = document.createElement("div");
+            materialImageDiv.className = "Final_Order_Material";
             newSection.appendChild(materialImageDiv);
 
             //change Material Image
 
             for (let j = 0; j < colors.length; j++) {
-                if (orders[i].finalMaterial==materials[j]){
-                    finalMaterialImage=material_images[j];
+                if (orders[i].finalMaterial == materials[j]) {
+                    finalMaterialImage = material_images[j];
                 }
             }
 
-            materialImage=document.createElement("img");
-            materialImage.className="Final_Order_Material_Image";
-            materialImage.src=finalMaterialImage;
+            materialImage = document.createElement("img");
+            materialImage.className = "Final_Order_Material_Image";
+            materialImage.src = finalMaterialImage;
             materialImageDiv.appendChild(materialImage);
-            
+
 
             //create Remove Option
-            removeButton=document.createElement("button");
-            removeButton.className="Remove_Button";
-         
+            removeButton = document.createElement("button");
+            removeButton.className = "Remove_Button";
+
             newSection.appendChild(removeButton);
-            removeOption=document.createElement("img");
-            removeOption.className="Remove_Option";
-            removeOption.src="images/remove_option.png";
+            removeOption = document.createElement("img");
+            removeOption.className = "Remove_Option";
+            removeOption.src = "images/remove_option.png";
             removeButton.appendChild(removeOption);
 
             //add item number
-            itemNumber=document.createElement("p");
-            itemNumber.className="item_number";
-            itemNumber.innerHTML=i+1;
+            itemNumber = document.createElement("p");
+            itemNumber.className = "item_number";
+            itemNumber.innerHTML = i + 1;
             //alert(itemNumber.innerHTML)
             newSection.appendChild(itemNumber);
-            index_to_remove=itemNumber.innerHTML-1;
+            index_to_remove = itemNumber.innerHTML - 1;
             //alert(index_to_remove);
-            removeButton.onclick=removeItem;
+            removeButton.onclick = removeItem;
 
 
 
+        }
     }
-}
 
-if (document.title == 'Wishlist Page') {
-    for (let i = 0; i < wishlist.length; i++) {
+    //Create Wishlist Page
+    if (document.title == 'Wishlist Page') {
+        for (let i = 0; i < wishlist.length; i++) {
 
-        let finalColorImage='';
-        let finalMaterialImage='';
-        let finalProductImage='';
+            let finalColorImage = '';
+            let finalMaterialImage = '';
+            let finalProductImage = '';
 
-        //create section
-        newSection=document.createElement("div");
-        newSection.className="Shopping_Cart_Section";
-        document.body.appendChild(newSection);
+            //create section
+            newSection = document.createElement("div");
+            newSection.className = "Shopping_Cart_Section";
+            document.body.appendChild(newSection);
 
-        //update image
-        newSectionImage=document.createElement("img");
-        newSectionImage.className="Shopping_Cart_Image_Div";
+            //update image
+            newSectionImage = document.createElement("img");
+            newSectionImage.className = "Shopping_Cart_Image_Div";
 
-        for (let j = 0; j < products.length; j++) {
-            if (wishlist[i].wishlistProduct==products[j]){
-                finalProductImage=product_images[j];
+            for (let j = 0; j < products.length; j++) {
+                if (wishlist[i].wishlistProduct == products[j]) {
+                    finalProductImage = product_images[j];
+                }
             }
-        }
 
-        newSectionImage.src=finalProductImage;
-        newSection.appendChild(newSectionImage);
+            newSectionImage.src = finalProductImage;
+            newSection.appendChild(newSectionImage);
 
-        //create Title
-        shoppingCartText=document.createElement("p");
-        shoppingCartText.className="Shopping_Cart_Text";
-        newSection.appendChild(shoppingCartText);
-        shoppingCartTextLink=document.createElement("a");
-        //shoppingCartTextLink.href="couchPillow.html";
-        shoppingCartTextLink.innerHTML=wishlist[i].wishlistProduct;
-        shoppingCartText.appendChild(shoppingCartTextLink);
+            //create Title
+            shoppingCartText = document.createElement("p");
+            shoppingCartText.className = "Shopping_Cart_Text";
+            newSection.appendChild(shoppingCartText);
+            shoppingCartTextLink = document.createElement("a");
+            //shoppingCartTextLink.href="couchPillow.html";
+            shoppingCartTextLink.innerHTML = wishlist[i].wishlistProduct;
+            shoppingCartText.appendChild(shoppingCartTextLink);
 
-        //create Quantity Option
-        quantityTitle=document.createElement("div");
-        quantityTitle.className="Quantity_Option_Shopping_Cart";
-        quantityTitle.innerHTML="Quantity";
-        newSection.appendChild(quantityTitle);
-        shoppingCartNumber=document.createElement("div");
-        shoppingCartNumber.className="shopping_cart_number";
-        newSection.appendChild(shoppingCartNumber);
-        shoppingCartInput=document.createElement("input");
-        shoppingCartInput.type="number";
-        shoppingCartInput.value=wishlist[i].wishlistQuantity;
-        shoppingCartNumber.appendChild(shoppingCartInput);
+            //create Quantity Option
+            quantityTitle = document.createElement("div");
+            quantityTitle.className = "Quantity_Option_Shopping_Cart";
+            quantityTitle.innerHTML = "Quantity";
+            newSection.appendChild(quantityTitle);
+            shoppingCartNumber = document.createElement("div");
+            shoppingCartNumber.className = "shopping_cart_number";
+            newSection.appendChild(shoppingCartNumber);
+            shoppingCartInput = document.createElement("input");
+            shoppingCartInput.type = "number";
+            shoppingCartInput.value = wishlist[i].wishlistQuantity;
+            shoppingCartNumber.appendChild(shoppingCartInput);
 
-        //create Color Option
-        colorTitle=document.createElement("div");
-        colorTitle.className="Color_Option";
-        colorTitle.innerHTML="Color";
-        newSection.appendChild(colorTitle);
-        colorSelected=document.createElement("p");
-        colorSelected.className="Color_Selected";
-        colorSelected.innerHTML=wishlist[i].wishlistColor;
-        newSection.appendChild(colorSelected);
-        colorImageDiv=document.createElement("div");
-        colorImageDiv.className="Final_Order_Color";
-        newSection.appendChild(colorImageDiv);
+            //create Color Option
+            colorTitle = document.createElement("div");
+            colorTitle.className = "Color_Option";
+            colorTitle.innerHTML = "Color";
+            newSection.appendChild(colorTitle);
+            colorSelected = document.createElement("p");
+            colorSelected.className = "Color_Selected";
+            colorSelected.innerHTML = wishlist[i].wishlistColor;
+            newSection.appendChild(colorSelected);
+            colorImageDiv = document.createElement("div");
+            colorImageDiv.className = "Final_Order_Color";
+            newSection.appendChild(colorImageDiv);
 
-        //change Color Image
-        for (let j = 0; j < materials.length; j++) {
-            if (wishlist[i].wishlistColor==colors[j]){
-                finalColorImage=color_images[j];
+            //change Color Image
+            for (let j = 0; j < materials.length; j++) {
+                if (wishlist[i].wishlistColor == colors[j]) {
+                    finalColorImage = color_images[j];
+                }
             }
-        }
 
-        colorImage=document.createElement("img");
-        colorImage.className="Final_Order_Color_Image";
-        colorImage.src=finalColorImage;
-        colorImageDiv.appendChild(colorImage);
+            colorImage = document.createElement("img");
+            colorImage.className = "Final_Order_Color_Image";
+            colorImage.src = finalColorImage;
+            colorImageDiv.appendChild(colorImage);
 
-        //create Edit Option
-        editOption=document.createElement("img");
-        editOption.className="Edit_Option";
-        editOption.src="images/edit_option.png";
-        newSection.appendChild(editOption);
+            //create Edit Option
+            editOption = document.createElement("img");
+            editOption.className = "Edit_Option";
+            editOption.src = "images/edit_option.png";
+            newSection.appendChild(editOption);
 
-        //create Material Option
-        materialTitle=document.createElement("div");
-        materialTitle.className="Material_Option";
-        materialTitle.innerHTML="Material";
-        newSection.appendChild(materialTitle);
-        materialSelected=document.createElement("p");
-        materialSelected.className="Material_Selected";
-        materialSelected.innerHTML=wishlist[i].wishlistMaterial;
-        newSection.appendChild(materialSelected);
-        materialImageDiv=document.createElement("div");
-        materialImageDiv.className="Final_Order_Material";
-        newSection.appendChild(materialImageDiv);
+            //create Material Option
+            materialTitle = document.createElement("div");
+            materialTitle.className = "Material_Option";
+            materialTitle.innerHTML = "Material";
+            newSection.appendChild(materialTitle);
+            materialSelected = document.createElement("p");
+            materialSelected.className = "Material_Selected";
+            materialSelected.innerHTML = wishlist[i].wishlistMaterial;
+            newSection.appendChild(materialSelected);
+            materialImageDiv = document.createElement("div");
+            materialImageDiv.className = "Final_Order_Material";
+            newSection.appendChild(materialImageDiv);
 
-        //change Material Image
+            //change Material Image
 
-        for (let j = 0; j < colors.length; j++) {
-            if (wishlist[i].wishlistMaterial==materials[j]){
-                finalMaterialImage=material_images[j];
+            for (let j = 0; j < colors.length; j++) {
+                if (wishlist[i].wishlistMaterial == materials[j]) {
+                    finalMaterialImage = material_images[j];
+                }
             }
+
+            materialImage = document.createElement("img");
+            materialImage.className = "Final_Order_Material_Image";
+            materialImage.src = finalMaterialImage;
+            materialImageDiv.appendChild(materialImage);
+
+
+            //create Remove Option
+            removeButton = document.createElement("button");
+            removeButton.className = "Remove_Button";
+
+            newSection.appendChild(removeButton);
+            removeOption = document.createElement("img");
+            removeOption.className = "Remove_Option";
+            removeOption.src = "images/remove_option.png";
+            removeButton.appendChild(removeOption);
+
+            //add item number
+            itemNumber = document.createElement("p");
+            itemNumber.className = "item_number";
+            itemNumber.innerHTML = i + 1;
+            //alert(itemNumber.innerHTML)
+            newSection.appendChild(itemNumber);
+            index_to_remove = itemNumber.innerHTML - 1;
+            //alert(index_to_remove);
+            removeButton.onclick = removeItem;
+
+
+
         }
-
-        materialImage=document.createElement("img");
-        materialImage.className="Final_Order_Material_Image";
-        materialImage.src=finalMaterialImage;
-        materialImageDiv.appendChild(materialImage);
-        
-
-        //create Remove Option
-        removeButton=document.createElement("button");
-        removeButton.className="Remove_Button";
-     
-        newSection.appendChild(removeButton);
-        removeOption=document.createElement("img");
-        removeOption.className="Remove_Option";
-        removeOption.src="images/remove_option.png";
-        removeButton.appendChild(removeOption);
-
-        //add item number
-        itemNumber=document.createElement("p");
-        itemNumber.className="item_number";
-        itemNumber.innerHTML=i+1;
-        //alert(itemNumber.innerHTML)
-        newSection.appendChild(itemNumber);
-        index_to_remove=itemNumber.innerHTML-1;
-        //alert(index_to_remove);
-        removeButton.onclick=removeItem;
+    }
 
 
-
-}
-}
-
-
-    
-    if (document.title == 'Shopping Cart Page') { 
+    //store count of items on Wishlist Page
+    if (document.title == 'Shopping Cart Page') {
         document.getElementById('itemCount').innerHTML = JSON.stringify(previousQuantity);
     }
 
-    if (document.title == 'Wishlist Page') { 
+    //store count of items on Shopping Cart Page
+    if (document.title == 'Wishlist Page') {
         document.getElementById('itemCount').innerHTML = JSON.stringify(wishlistQuantity);
     }
-    
+
 }
 
 
-
+//function to remove items from Shopping Cart and Wishlist Pages
 function removeItem(index_to_remove) {
-    //alert(index_to_remove);
 
-    if (document.title=="Shopping Cart Page") {
-        orders=JSON.parse(sessionStorage.getItem('all orders')) || [];
-        orders.splice(index_to_remove,1);
+    if (document.title == "Shopping Cart Page") {
+        orders = JSON.parse(sessionStorage.getItem('all orders')) || [];
+        orders.splice(index_to_remove, 1);
         sessionStorage.setItem('all orders', JSON.stringify(orders));
-        previousQuantity-=1;
+        previousQuantity -= 1;
         sessionStorage.setItem("finalQuantity", previousQuantity);
         location.reload();
         return false;
     }
 
-    if (document.title=="Wishlist Page") {
-        wishlist=JSON.parse(sessionStorage.getItem('all wishlist')) || [];
-        wishlist.splice(index_to_remove,1);
+    if (document.title == "Wishlist Page") {
+        wishlist = JSON.parse(sessionStorage.getItem('all wishlist')) || [];
+        wishlist.splice(index_to_remove, 1);
         sessionStorage.setItem('all wishlist', JSON.stringify(wishlist));
-        wishlistQuantity-=1;
+        wishlistQuantity -= 1;
         sessionStorage.setItem("ishlistQuantity", wishlistQuantity);
         location.reload();
         return false;
