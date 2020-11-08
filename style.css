@@ -67,6 +67,7 @@ nav{
     height: 90px;
 	z-index: 1000;
 }
+
 #pillow_icon{
     position: relative; 
     right: 5%;
@@ -84,8 +85,14 @@ nav{
 
 #shopping_cart_icon{
     position: relative; 
+    left: 10%;
+}
+
+#wishlist_icon{
+    position: relative; 
     left: 3%;
 }
+
 
 
 
@@ -380,7 +387,7 @@ p{
 .Product_Title{
     position: relative; 
     right: 35%; 
-    top: 5%; 
+    top: -5%; 
     font-size: xx-large;
     margin-top: 5%;
 }
@@ -397,7 +404,7 @@ p{
     position: relative;
     text-align: left; 
     left: 3%; 
-    top: 20%;
+    top: 10%;
     font-size: large; 
     width: 25%;
 }
@@ -614,17 +621,35 @@ p{
 
 .Add_Cart_Button{
     position: relative; 
-    top: 30%;
+    top: 28.5%;
     width: 300px;
     height: 80px; 
+    left: -5%;
 }
 
 .Add_Cart_Image{
     position: relative; 
-    top: 30%;
+    top: 29.5%;
     width: 300px;
     height: 80px; 
+    left:-1.95%;
 }
+
+.Wishlist_Button{
+    position: relative; 
+    top: 25%;
+    width: 100px;
+    height: 80px; 
+    left: 5%;
+}
+
+.Wishlist_Image{
+    position: relative; 
+    top: 25%;
+    width: 80px;
+    height: 60px; 
+}
+
 
 /************Shopping Cart Page************/
 
@@ -725,7 +750,7 @@ p{
     bottom: 62%;
     height:10%;
     width:10%;
-    margin-top: 0.75%; 
+    margin-top: 0.7%; 
     left: 23%; 
     z-index: 1000;
 }
@@ -742,6 +767,13 @@ p{
     width: 80px;
     position: relative; 
     left: 5%;
+}
+
+#wishlist_image{
+    width: 120px;
+    height: 90px;
+    position: relative; 
+    left: 4.5%;
 }
 
 

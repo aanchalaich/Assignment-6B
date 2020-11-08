@@ -29,13 +29,17 @@
                 <input type="text" placeholder="Search..">
                 <button type="submit">Search</button>
             </div>
-            <div>
-                <img id="login_icon" src="images/loginInformation.png" alt="Login Icon">
-            </div>
-            <div id="shopping_cart_icon">
-                <a href="shoppingCart.html"><img id="shopping_cart_icon_nav" src="images/shoppingCartIcon.png"
-                        alt="Login Icon"></a>
-            </div>
+            <div style="position: relative; left:10%">
+				<img id="login_icon" src="images/loginInformation.png" alt="Login Icon">
+			</div>
+			<div id="shopping_cart_icon">
+				<a href="shoppingCart.html"><img id="shopping_cart_icon_nav" src="images/shoppingCartIcon.png"
+						alt="Login Icon"></a>
+			</div>
+			<div id="wishlist_icon">
+				<a href="wishlist.html"><img id="shopping_cart_icon_nav" src="images/wishlist_header.png"
+						alt="Login Icon"></a>
+			</div>
         </div>
         <nav>
             <a href="productBrowsingPage.html">Products</a>
@@ -142,6 +146,9 @@
             </div>
             <button class="Add_Cart_Button" onclick="submitOrder()">
                 <img class="Add_Cart_Image" src="images/add_to_cart.png" alt="picture of color">
+            </button>
+            <button class="Wishlist_Button" onclick="addToWishlist()">
+                <img class="Wishlist_Image" src="images/wishlist.png" alt="picture of color">
             </button>
         </div>
 
